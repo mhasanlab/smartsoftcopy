@@ -1,0 +1,87 @@
+﻿@*@model work_01.Models.ProductViewModel
+@{
+    ViewBag.Title = "Create";
+}
+<div class="row">
+    <div class="col">
+        <h1>Add New Product</h1>
+        <div class="col-md-12">
+            @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "msg", OnComplete = "clearAll" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.productName, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.productName, new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.productName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.catId, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.DropDownListFor(x=>x.catId, ViewBag.categoryList as SelectList, "--Select one--",new { @class = "form-control form-select r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.catId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.price, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.price, new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.storeDate, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.storeDate, new { @class = "form-control r", type = "date" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.storeDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x =>x.Picture, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Picture, new { @class = "form-control r", type = "file" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Picture, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="row mb-2">
+                    <div class="col-10 offset-2">
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-10 offset-2" id="msg">
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        $("#form0").attr("enctype", "multipart/form-data")
+        function clearAll() {
+            $("#form0").trigger("reset");
+        }
+    </script>
+}*@
+
+
+

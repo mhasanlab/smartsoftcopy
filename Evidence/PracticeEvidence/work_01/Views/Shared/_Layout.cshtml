@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <environment include="Development,Production">
+        <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/lib/font-awesome/css/fontawesome.css" rel="stylesheet" />
+        <script src="~/lib/jquery/jquery.js"></script>
+    </environment>
+    @RenderSection("styles", required: false)
+    <style type="text/css">
+        body {
+            font-family:'Century Gothic';
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-action="">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" asp-action="Index" asp-controller="Home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="" asp-controller="">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="" asp-controller="">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" asp-action="" asp-controller="" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <footer>
+        <p class="text-center">@DateTime.Now.Year - www.isdb-bisew.com</p>
+    </footer>
+    <environment include="Development,Production">
+        <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    </environment>
+    @RenderSection("scripts", required:false)
+</body>
+</html>

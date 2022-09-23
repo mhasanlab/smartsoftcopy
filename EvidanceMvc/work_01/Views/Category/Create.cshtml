@@ -1,0 +1,47 @@
+﻿@*@model work_01.Models.Category
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <div class="col">
+        <h1>Add New Category</h1>
+        <div class="col-md-12">
+            @using (Ajax.BeginForm(new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "msg", OnComplete = "clearAll" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.categoryName, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.categoryName, new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.categoryName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-10 offset-2">
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-10 offset-2" id="msg">
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        function clearAll() {
+            $("#form0").trigger("reset");
+        }
+    </script>
+}*@
+

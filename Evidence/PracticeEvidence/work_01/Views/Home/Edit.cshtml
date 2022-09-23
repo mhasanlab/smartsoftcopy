@@ -1,0 +1,110 @@
+﻿@model work_01.Models.ViewModel.CarVM
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="row">
+    <div class="col">
+        <div id="panel"></div>
+        <h2>Edit Customer</h2>
+        <form id="frmCreate"
+              asp-action="Edit"
+              asp-controller="Home"
+              data-ajax-method="Post"
+              data-ajax="true"
+              data-ajax-mode="replace"
+              data-ajax-update="#panel"
+              data-ajax-success="success">
+            <input asp-for="CarId" type="hidden" />
+            <input asp-for="PicturePath" type="hidden" />
+            <div class="row mb-2">
+                <label class="col-form-label col-2" asp-for="CarName">@Html.DisplayNameFor(x => x.CarName)</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" asp-for="CarName" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="CarName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-form-label col-2" asp-for="CustomerId">@Html.DisplayNameFor(x => x.CustomerId)</label>
+                <div class="col-md-6">
+                    <select class="form-control" asp-for="CustomerId" asp-items="@(new SelectList(ViewBag.customers,"CustomerId","CustomerName"))">
+                        <option value="0" selected="selected">----Select-----</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="CustomerId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-form-label col-2" asp-for="Make">@Html.DisplayNameFor(x => x.Make)</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="number" asp-for="Make" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="Make" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-form-label col-2" asp-for="PurchaseDate">@Html.DisplayNameFor(x => x.PurchaseDate)</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="date" asp-for="PurchaseDate" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-form-label col-2" asp-for="Price">@Html.DisplayNameFor(x => x.Price)</label>
+                <div class="col-md-6">
+                    <input class="form-control" type="text" asp-for="Price" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-form-label col-2" asp-for="isAvailable">@Html.DisplayNameFor(x => x.isAvailable)</label>
+                <div class="col-md-6">
+                    <input type="checkbox" asp-for="isAvailable" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="isAvailable" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <label class="col-form-label col-2" asp-for="Pictures">@Html.DisplayNameFor(x => x.Pictures)</label>
+                <div class="col-md-6">
+                    <input type="file" class="form-control" asp-for="Pictures" />
+                </div>
+                <div class="col-4">
+                    <span asp-validation-for="Pictures" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-10 offset-2">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/validation/jquery.validate.min.js"></script>
+    <script src="~/lib/validation/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/ajax/dist/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        $("#frmCreate").attr("enctype", "multipart/form-data")
+        function success() {
+            $("#frmCreate").trigger('reset')
+        }
+    </script>
+}
+
+
+

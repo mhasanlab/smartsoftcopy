@@ -1,0 +1,46 @@
+﻿@*@model IEnumerable<work_01.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col">
+        <h1>Category List</h1>
+        <div class="d-flex justify-content-end mb-2">
+            <a href="@Url.Action("Create","Home")" class="btn btn-info">Add New</a>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>@Html.DisplayNameFor(x => x.productId)</th>
+                        <th>@Html.DisplayNameFor(x => x.productName)</th>
+                        <th>@Html.DisplayNameFor(x => x.price)</th>
+                        <th>@Html.DisplayNameFor(x => x.storeDate)</th>
+                        <th>@Html.DisplayNameFor(x => x.picturePath)</th>
+                        <th>@Html.DisplayNameFor(x => x.catId)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                    <tr>
+                        <td>@Html.DisplayFor(x => p.productId)</td>
+                        <td>@Html.DisplayFor(x => p.productName)</td>
+                        <td>@Html.DisplayFor(x => p.price)</td>
+                        <td>@Html.DisplayFor(x => p.storeDate)</td>
+                        <td>@Html.DisplayFor(x => p.picturePath)</td>
+                        <td>@Html.DisplayFor(x => p.Category.categoryName)</td>
+
+                        <td>
+                            <a href="@Url.Action("Edit","Home",new { id=p.productId})" class="btn btn-info btn-sm">Edit</a>
+                            <a href="@Url.Action("Delete","Home",new { id=p.productId})" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>*@
+

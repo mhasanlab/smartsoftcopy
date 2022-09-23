@@ -1,0 +1,75 @@
+﻿@*@model work_01.Models.ProductViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="row">
+    <div class="col">
+        <h1>Edit New Product</h1>
+        <div class="col-md-12">
+            @using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(x => x.productId)
+                @Html.HiddenFor(x => x.picturePath)
+
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.productName, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.productName, new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.productName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.catId, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.DropDownListFor(x => x.catId, ViewBag.categoryList as SelectList, "--Select one--", new { @class = "form-control form-select r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.catId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.price, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.price, new { @class = "form-control r" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.storeDate, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.EditorFor(x => x.storeDate,new { htmlAttributes = new { @class = "form-control", placeholder = "Store Date", Type = "date" } })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.storeDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    @Html.LabelFor(x => x.Picture, new { @class = "col-form-label col-2 r" })
+                    <div class="col-6">
+                        @Html.TextBoxFor(x => x.Picture, new { @class = "form-control r", type = "file" })
+                    </div>
+                    <div class="col-4">
+                        @Html.ValidationMessageFor(x => x.Picture, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="row mb-2">
+                    <div class="col-10 offset-2">
+                        <button type="submit" class="btn btn-info">Update</button>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+    <div class="d-flex justify-content-start">
+        <a href="@Url.Action("Index","Home")" class="btn btn-link btn-sm mb-2">Back to list</a>
+    </div>
+</div>*@
+
